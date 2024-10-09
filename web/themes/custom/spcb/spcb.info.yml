@@ -1,0 +1,11 @@
+name: SpecbeeTheme
+type: theme
+base theme: claro
+description: A clean, accessible, and powerful Drupal administration theme.
+alt text: Screenshot of Claro, Drupal administration theme.
+package: Core
+core_version_requirement: ^10 || ^11
+version: 1.x
+
+libraries:
+  - spcb/global-styling

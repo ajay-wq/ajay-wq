@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {%
+    set row_classes = [
+      default_row_class ? 'views-row',
+      'articles--view__card',
+    ]
+  %}
+  <div{{ row.attributes.addClass(row_classes) }}>
+    <div class="articles--view__card--image">
+      <img src="{{ file_url(row.content['#row']._entity.field_image.entity.fileuri) }}">
+      <div class="articles--view__card--price">{{ row.content['#row']._entity.field_price.value }}</div>
+    </div>
+    <div class="articles--view__card--title">{{ row.content['#row']._entity.title.value }}</div>
+    <div class="articles--view__card--tags">
+      {% for item in row.content['#row']._entity.field_profile_tags %}
+        {{ (item.entity.name.value) }}
+      {% endfor %}
+    </div>
+    <div class="articles--view__card--date">{{ row.content['#row']._entity.field_date.value }}</div>
+    <div class="articles--view__card--address">{{ row.content['#row']._entity.field_address.value }}</div>
+  </div>
+{% endfor %}
