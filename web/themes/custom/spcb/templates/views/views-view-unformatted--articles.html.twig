@@ -29,16 +29,30 @@
   %}
   <div{{ row.attributes.addClass(row_classes) }}>
     <div class="articles--view__card--image">
+      <div class="rectangle-icon">
+        <div class="star-icon"></div>
+      </div>
       <img src="{{ file_url(row.content['#row']._entity.field_image.entity.fileuri) }}">
-      <div class="articles--view__card--price">{{ row.content['#row']._entity.field_price.value }}</div>
+      <div class="articles--view__card--price"> ₹ {{ row.content['#row']._entity.field_price.value }}</div>
     </div>
-    <div class="articles--view__card--title">{{ row.content['#row']._entity.title.value }}</div>
-    <div class="articles--view__card--tags">
-      {% for item in row.content['#row']._entity.field_profile_tags %}
-        {{ (item.entity.name.value) }}
-      {% endfor %}
+    <div class="articles--view__card--content">
+      <div class="articles--view__card--title">
+        {{ row.content['#row']._entity.title.value }}
+      </div>
+      <div class="articles--view__card--tags">
+        <div class="tag-icon"></div>
+        {% for item in row.content['#row']._entity.field_profile_tags %}
+          {{ (item.entity.name.value) }}
+        {% endfor %}
+      </div>
+      <div class="articles--view__card--date">
+        <div class="date-icon"></div>
+        {{ row.content['#row']._entity.field_date.value }}
+      </div>
+      <div class="articles--view__card--address">
+        <div class="location-icon"></div>
+        {{ row.content['#row']._entity.field_address.value }}
+      </div>
     </div>
-    <div class="articles--view__card--date">{{ row.content['#row']._entity.field_date.value }}</div>
-    <div class="articles--view__card--address">{{ row.content['#row']._entity.field_address.value }}</div>
   </div>
 {% endfor %}
